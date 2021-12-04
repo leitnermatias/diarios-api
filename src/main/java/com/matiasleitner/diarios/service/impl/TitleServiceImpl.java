@@ -1,5 +1,7 @@
 package com.matiasleitner.diarios.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +19,11 @@ public class TitleServiceImpl implements TitleService {
 	public Iterable<Title> getTitles() {
 		Iterable<Title> titles = titleRepository.findAll();
 		return titles;
+	}
+
+	@Override
+	public List<Title> getByApiRef(String name) {
+		return titleRepository.findByNewspaperApiRef(name);
 	}
 
 }
