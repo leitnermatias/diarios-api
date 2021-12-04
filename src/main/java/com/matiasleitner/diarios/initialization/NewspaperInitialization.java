@@ -20,14 +20,14 @@ public class NewspaperInitialization {
 	@PostConstruct
 	public void init() {
 		LOG.info("Starting NewspaperInitialization");
-		createNewspaper("Clarin", "https://www.clarin.com", "https://www.clarin.com/ultimo-momento/");
-		createNewspaper("La Nacion", "https://www.lanacion.com.ar", "https://www.lanacion.com.ar/ultimas-noticias/");
-		createNewspaper("Rosario3", "https://www.rosario3.com/", "https://www.rosario3.com/seccion/ultimas-noticias/");
+		createNewspaper("Clarin", "clarin", "https://www.clarin.com", "https://www.clarin.com/ultimo-momento/");
+		createNewspaper("La Nacion", "lanacion", "https://www.lanacion.com.ar", "https://www.lanacion.com.ar/ultimas-noticias/");
+		createNewspaper("Rosario3", "rosario3", "https://www.rosario3.com/", "https://www.rosario3.com/seccion/ultimas-noticias/");
 	}
 	
-	private void createNewspaper(String name, String baseUrl, String titlesUrl) {
+	private void createNewspaper(String name, String apiRef, String baseUrl, String titlesUrl) {
 		LOG.info("Adding newspaper " + name + " to database");
-		Newspaper newspaper = new Newspaper(name, baseUrl, titlesUrl);
+		Newspaper newspaper = new Newspaper(name, apiRef, baseUrl, titlesUrl);
 		newspaperRepository.save(newspaper);
 		LOG.info("Successfully added newspaper " + name + " to the database");
 	}

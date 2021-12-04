@@ -19,6 +19,9 @@ public class Newspaper extends BaseEntity {
 	private String name;
 	
 	@NonNull
+	private String apiRef;
+	
+	@NonNull
 	private String baseUrl;
 	
 	@NonNull
