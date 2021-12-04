@@ -44,6 +44,14 @@ public class LaNacion implements NewspaperStrategy {
 				Element aTag = title.selectFirst("a.com-link");
 				Element imgTag = title.selectFirst("img.com-image");
 				
+				if(aTag == null || imgTag == null) {
+					String infoString = "Tags: " + aTag + " " + imgTag;
+					
+					LOG.warn("Skipping title because we couldn't find certain elements | " + infoString);
+					
+					continue;
+				}
+				
 				String titleUrl = laNacionConfig.getBaseUrl() + aTag.attr("href");
 				String titleHeader = aTag.text();
 				String titleImgUrl = imgTag.attr("src");

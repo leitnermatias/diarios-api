@@ -45,9 +45,20 @@ public class Clarin implements NewspaperStrategy {
 				Element h2Tag = title.selectFirst("div.mt").selectFirst("h2");
 				Element imgTag = title.selectFirst("div.wrap-figure").selectFirst("img");
 				
+				if (aTag == null || h2Tag == null || imgTag == null) {
+					
+					String infoString = "Tags: " + aTag + " " + h2Tag + " " + imgTag;
+							
+					LOG.warn("Skipping title because we couldn't find certain elements | " + infoString);
+					
+					continue;
+				}
+				
+				
 				String titleUrl = aTag.attr("href");
 				String titleHeader = h2Tag.text();
 				String titleImgUrl = imgTag.attr("data-big");
+				
 				
 				Title existingTitle = titleRepository.findByTitleUrl(titleUrl);
 				
